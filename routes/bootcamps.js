@@ -1,14 +1,18 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const bootcampController = require("../controllers/bootcamp");
+const bootcampController = require('../controllers/bootcamp');
 
 router
-  .route("/")
-  .get(bootcampController.getAllBootcamps)
+  .route('/radius/:zipcode/:distance')
+  .get(bootcampController.getBootcampsWithinRadius);
+
+router
+  .route('/')
+  .get(bootcampController.getBootcamps)
   .post(bootcampController.createBootcamp);
 
 router
-  .route("/:id")
+  .route('/:id')
   .get(bootcampController.getBootcamp)
   .put(bootcampController.updateBootcamp)
   .delete(bootcampController.deleteBootcamp);
